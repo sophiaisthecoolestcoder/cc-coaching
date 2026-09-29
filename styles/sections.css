@@ -1,0 +1,223 @@
+/* ============================================================
+   SECTIONS - per-section composition
+   Consumes tokens only. No literal values.
+   ============================================================ */
+
+/* ---- Hero ---- */
+
+/* The hero always fills the first screen. On tall displays its content is
+   shorter than the viewport, and the next section's band showed through
+   underneath. The content is centred in the space instead.
+   Column direction on purpose: centring on the row axis would size the
+   container by the portrait's intrinsic 1200px and overflow narrow screens. */
+.hero {
+  padding-block: var(--section-y);
+  min-height: var(--hero-min-h);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* The claim is set at display size, so the text column has to be the
+   wider one - .split--media puts the media first and would squeeze it. */
+.hero__split {
+  --split: 7fr 5fr;
+  align-items: center;
+}
+
+/* The claim is a full sentence from Was.docx rather than a short slogan.
+   At --fs-display it ran to six lines and swamped the page, so it is set one
+   step down. If a shorter claim is ever chosen, --fs-display fits again. */
+.hero__claim {
+  font-size: var(--fs-hero);
+  line-height: var(--lh-h2);
+  letter-spacing: var(--tr-display);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+  margin-top: var(--sp-7);
+}
+
+
+/* ---- Portrait ---- */
+
+.portrait {
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Placeholder until the real photograph arrives. Deliberately plain
+   so it reads as scaffolding rather than as a design choice. */
+.portrait--pending {
+  background: var(--bg-alt);
+  border: var(--border-hair);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: var(--sp-5);
+}
+
+.portrait__note {
+  font-family: var(--ff-micro);
+  font-size: var(--fs-micro);
+  text-transform: uppercase;
+  letter-spacing: var(--tr-micro);
+  color: var(--text-muted);
+}
+
+
+/* ---- Qualifications ---- */
+
+.quals {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.qual {
+  padding-block: var(--sp-5);
+  border-top: var(--border-hair);
+  margin-top: 0;
+}
+
+.qual:last-child { border-bottom: var(--border-hair); }
+
+.qual__name {
+  font-family: var(--ff-display);
+  font-weight: var(--fw-regular);
+  font-size: var(--fs-h3);
+  line-height: var(--lh-h3);
+  letter-spacing: var(--tr-normal);
+  color: var(--text-strong);
+  margin-bottom: var(--sp-2);
+}
+
+.qual__note {
+  color: var(--text-muted);
+  font-size: var(--fs-small);
+}
+
+
+/* ---- Testimonials ---- */
+
+.testimonials {
+  display: grid;
+  gap: var(--sp-9);
+}
+
+.testimonial__meta {
+  display: block;
+  margin-top: var(--sp-5);
+  font-family: var(--ff-micro);
+  font-size: var(--fs-micro);
+  text-transform: uppercase;
+  letter-spacing: var(--tr-micro);
+  color: var(--text-muted);
+  font-style: normal;
+}
+
+
+/* ---- Pull quote ---- */
+
+.pullquote {
+  font-family: var(--ff-display);
+  font-weight: var(--fw-light);
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+  letter-spacing: var(--tr-display);
+  color: var(--text-strong);
+  border-left: 2px solid var(--accent-soft);
+  padding-left: var(--sp-6);
+  margin-block: var(--sp-8);
+  max-width: var(--w-display);
+}
+
+
+/* ---- Contact ---- */
+
+.contact__mail {
+  font-family: var(--ff-display);
+  font-weight: var(--fw-light);
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+  letter-spacing: var(--tr-normal);
+  border-bottom-width: 1px;
+  display: inline-block;
+  margin-block: var(--sp-5);
+}
+
+
+/* ---- Values line ----
+   Her five values are one sentence in Werte.docx. It is set as display
+   type but never split into a list - that would alter her text. */
+
+.values-line {
+  font-family: var(--ff-display);
+  font-weight: var(--fw-light);
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+  letter-spacing: var(--tr-display);
+  color: var(--text-strong);
+  max-width: var(--w-display);
+  margin-block: var(--sp-7);
+}
+
+/* Each line of an attribution stays a separate element so that no two of
+   her lines are ever concatenated into a string she did not write. */
+.testimonial__meta span { display: block; }
+.testimonial__meta span + span { margin-top: var(--sp-1); }
+
+/* The closing paragraph of Werte follows the value list directly and needs
+   the same breathing room the list has above it. */
+.values + .prose { margin-top: var(--sp-7); }
+
+
+/* ---- Legal pages ----
+   The Impressum and Datenschutzerklaerung are generated verbatim from the
+   client's document, which nests h1 > h2 > h3 > h4. The prose rules only
+   space h2 and h3, so h4 needs its own step. */
+
+.legal > * + h4 { margin-top: var(--sp-6); }
+
+.legal h1 {
+  font-size: var(--fs-h1);
+  margin-bottom: var(--sp-7);
+}
+
+.legal h2 { font-size: var(--fs-h2); }
+.legal h3 { font-size: var(--fs-h3); }
+
+/* The Impressum is a shallow document: a single heading level under the
+   title, where the Datenschutzerklaerung nests h2 > h3 > h4. Its h2 would
+   therefore render a size larger than the subheadings on the other legal
+   page. This matches the two, without touching her heading levels. */
+.legal.legal--flat h2 {
+  font-size: var(--fs-h3);
+  line-height: var(--lh-h3);
+  letter-spacing: var(--tr-normal);
+  /* h3 carries its own weight rule (regular, not light), so match that too
+     or the two pages' subheadings differ by a stroke weight. */
+  font-weight: var(--fw-regular);
+}
+
+/* The all-caps objection clauses (Art. 21 DSGVO) are set by the generator in
+   capitals. Tracked slightly so a full paragraph of caps stays readable. */
+.legal p {
+  overflow-wrap: break-word;
+}
+
+/* Separator between the German and the English version. */
+.rule--wide {
+  width: 100%;
+  margin-block: var(--sp-10);
+}

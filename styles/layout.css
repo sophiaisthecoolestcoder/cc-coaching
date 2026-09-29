@@ -1,0 +1,135 @@
+/* ============================================================
+   LAYOUT - containers, section rhythm, grids
+   Consumes tokens only. No literal values.
+   ============================================================ */
+
+/* ---- Containers ---- */
+
+.container {
+  width: 100%;
+  max-width: var(--w-content);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.container--wide { max-width: var(--w-wide); }
+
+.container--prose {
+  max-width: calc(var(--w-prose) + var(--gutter) * 2);
+}
+
+
+/* ---- Sections ----
+   Vertical rhythm is owned here. Individual sections never set
+   their own top/bottom padding. */
+
+.section {
+  padding-block: var(--section-y);
+  position: relative;
+}
+
+.section--alt { background: var(--bg-alt); }
+
+.section--tight { padding-block: calc(var(--section-y) * .6); }
+
+/* Anchor offset so the sticky header never covers a heading. */
+.section[id] { scroll-margin-top: calc(var(--header-h) + var(--sp-5)); }
+
+
+/* ---- Section header block ---- */
+
+.section-head {
+  max-width: var(--w-lead);
+  margin-bottom: var(--sp-8);
+}
+
+.section-head--center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+
+/* ---- Prose ---- */
+
+.prose {
+  max-width: var(--w-prose);
+}
+
+.prose > * + * { margin-top: var(--sp-4); }
+
+.prose > h2 + *,
+.prose > h3 + * { margin-top: var(--sp-4); }
+
+.prose > * + h2 { margin-top: var(--sp-8); }
+.prose > * + h3 { margin-top: var(--sp-7); }
+
+/* The lead is set in Inter Light. Weight is the only lever left here:
+   --text-muted is already 4.80:1 on --c-shell, so lightening the colour
+   any further would break AA on the alternating bands. Dropping the
+   stroke weight reduces the perceived heaviness at no contrast cost. */
+.lead {
+  font-size: var(--fs-lead);
+  font-weight: var(--fw-light);
+  line-height: var(--lh-lead);
+  letter-spacing: var(--tr-lead);
+  color: var(--text-muted);
+  max-width: var(--w-lead);
+}
+
+/* Below ~26rem Inter Light gets fragile at lead size, so step back to
+   regular on the narrowest phones. */
+@media (max-width: 26rem) {
+  .lead { font-weight: var(--fw-regular); }
+}
+
+
+/* ---- Grid ----
+   Auto-fit columns with a minimum track. Set --col-min per use. */
+
+.grid {
+  display: grid;
+  gap: var(--sp-6);
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(var(--col-min, 16rem), 100%), 1fr)
+  );
+}
+
+.grid--2 { --col-min: 22rem; }
+.grid--3 { --col-min: 16rem; }
+
+/* Explicit two-column split for editorial layouts. */
+.split {
+  display: grid;
+  gap: var(--sp-7);
+  align-items: start;
+}
+
+@media (min-width: 56rem) {
+  .split {
+    grid-template-columns: var(--split, 1fr 1fr);
+    gap: var(--sp-9);
+  }
+  .split--sidebar { --split: 1fr 2fr; }
+  .split--intro   { --split: 2fr 3fr; }
+  .split--media   { --split: 5fr 7fr; }
+}
+
+
+/* ---- Stack ---- */
+
+.stack > * + * { margin-top: var(--stack-gap, var(--sp-4)); }
+
+.stack--sm { --stack-gap: var(--sp-2); }
+.stack--lg { --stack-gap: var(--sp-6); }
+
+
+/* ---- Utilities ----
+   Deliberately few. If a utility is needed more than three times,
+   it belongs in components.css as a named thing instead. */
+
+.u-center      { text-align: center; }
+.u-muted       { color: var(--text-muted); }
+.u-display     { font-family: var(--ff-display); font-weight: var(--fw-light); }
+.u-measure     { max-width: var(--w-prose); }
+.u-no-wrap     { white-space: nowrap; }

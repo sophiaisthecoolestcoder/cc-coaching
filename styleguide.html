@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Design System - CC Coaching &amp; Consulting</title>
+<script>document.documentElement.classList.add('js');</script>
+
+<link rel="icon" href="assets/img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="assets/img/favicon-256.png" sizes="256x256" type="image/png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/cormorant-garamond-300-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/inter-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+<link rel="stylesheet" href="styles/fonts.css">
+<link rel="stylesheet" href="styles/tokens.css">
+<link rel="stylesheet" href="styles/base.css">
+<link rel="stylesheet" href="styles/layout.css">
+<link rel="stylesheet" href="styles/components.css">
+
+<style>
+  /* Styleguide chrome only. Not shipped with the site.
+     Still consumes tokens - no literal values. */
+  .sg-section { padding-block: var(--sp-9); border-top: var(--border-hair); }
+  .sg-label {
+    font-family: var(--ff-micro); font-size: var(--fs-micro);
+    text-transform: uppercase; letter-spacing: var(--tr-micro);
+    color: var(--text-muted); margin-bottom: var(--sp-5); display: block;
+  }
+  .sg-swatch { border: var(--border-hair); border-radius: var(--radius); overflow: hidden; }
+  .sg-chip { height: var(--sp-9); border-bottom: var(--border-hair); }
+  .sg-meta { padding: var(--sp-3) var(--sp-4); }
+  .sg-name {
+    font-family: var(--ff-micro); font-size: var(--fs-micro);
+    text-transform: uppercase; letter-spacing: var(--tr-micro);
+  }
+  code, .sg-code {
+    font-family: var(--ff-mono); font-size: var(--fs-small);
+    color: var(--text-muted);
+  }
+  .sg-row {
+    display: flex; align-items: baseline; gap: var(--sp-5);
+    padding-block: var(--sp-4); border-bottom: var(--border-hair);
+    flex-wrap: wrap;
+  }
+  .sg-row__meta { flex: 0 0 auto; min-width: var(--sp-11); }
+  .sg-bar { background: var(--accent-soft); height: var(--sp-3); border-radius: var(--radius); }
+  .sg-note {
+    border-left: 2px solid var(--accent-soft); padding-left: var(--sp-5);
+    color: var(--text-muted); font-size: var(--fs-small);
+  }
+  .sg-pass { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+<header class="site-header" data-header>
+  <div class="container container--wide site-header__inner">
+    <a class="logo" href="#top" aria-label="CC Coaching &amp; Consulting - Startseite">
+      <picture>
+        <source srcset="assets/img/logo.webp" type="image/webp">
+        <img src="assets/img/logo.png" alt="CC Coaching &amp; Consulting" width="308" height="51">
+      </picture>
+    </a>
+
+    <button class="nav__toggle" type="button" data-nav-open aria-expanded="false" aria-controls="sg-nav" aria-label="Menü öffnen">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true">
+        <path d="M3 6h18M3 12h18M3 18h18"/>
+      </svg>
+    </button>
+
+    <nav class="nav nav--overlay" id="sg-nav" data-nav aria-label="Hauptnavigation">
+      <button class="nav__close" type="button" data-nav-close aria-label="Menü schließen">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18"/>
+        </svg>
+      </button>
+      <ul class="nav__list">
+        <li><a class="nav__link" data-nav-link href="#farbe">Farbe</a></li>
+        <li><a class="nav__link" data-nav-link href="#typografie">Typografie</a></li>
+        <li><a class="nav__link" data-nav-link href="#raum">Raum</a></li>
+        <li><a class="nav__link" data-nav-link href="#komponenten">Komponenten</a></li>
+        <li><a class="nav__link" data-nav-link href="#bewegung">Bewegung</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ TITLE ============ -->
+  <section class="section" id="top">
+    <div class="container">
+      <span class="eyebrow">Design System · v1</span>
+      <h1 style="font-size: var(--fs-display); line-height: var(--lh-display);">
+        Warm Sand &amp; Ink
+      </h1>
+      <hr class="rule">
+      <p class="lead">
+        Das verbindliche Regelwerk für die Website von CC Coaching &amp; Consulting.
+        Jede Farbe, jede Schriftgröße und jeder Abstand auf der Website stammt aus
+        dieser Seite. Kommt ein Wert hier nicht vor, existiert er nicht.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ COLOUR ============ -->
+  <section class="section sg-section" id="farbe">
+    <div class="container">
+      <span class="sg-label">01 - Farbe</span>
+      <h2>Palette</h2>
+
+      <div class="grid grid--3" style="margin-top: var(--sp-7);">
+
+        <div class="sg-swatch">
+          <div class="sg-chip" style="background: var(--c-sand);"></div>
+          <div class="sg-meta">
+            <span class="sg-name">Sand</span><br>
+            <code>--c-sand · #FAF7F2</code><br>
+            <span class="u-muted" style="font-size: var(--fs-small);">Seitenhintergrund</span>
+          </div>
+        </div>
+
+        <div class="sg-swatch">
+          <div class="sg-chip" style="background: var(--c-shell);"></div>
+          <div class="sg-meta">
+            <span class="sg-name">Shell</span><br>
+            <code>--c-shell · #F1EBE2</code><br>
+            <span class="u-muted" style="font-size: var(--fs-small);">Abschnittsbänder</span>
+          </div>
+        </div>
+
+        <div class="sg-swatch">
+          <div class="sg-chip" style="background: var(--c-ink);"></div>
+          <div class="sg-meta">
+            <span class="sg-name">Ink</span><br>
+            <code>--c-ink · #1C1B19</code><br>
+            <span class="u-muted" style="font-size: var(--fs-small);">Überschriften, Display</span>
+          </div>
+        </div>
+
+        <div class="sg-swatch">
+          <div class="sg-chip" style="background: var(--c-ink-soft);"></div>
+          <div class="sg-meta">
+            <span class="sg-name">Ink Soft</span><br>
+            <code>--c-ink-soft · #3A3630</code><br>
+            <span class="u-muted" style="font-size: var(--fs-small);">Fließtext (Inter)</span>
+          </div>
+        </div>
+
+        <div class="sg-swatch">
+          <div class="sg-chip" style="background: var(--c-stone);"></div>
+          <div class="sg-meta">
+            <span class="sg-name">Stone</span><br>
+            <code>--c-stone · #6B6660</code><br>
+            <span class="u-muted" style="font-size: var(--fs-small);">Sekundärtext</span>
+          </div>
+        </div>
+
+        <div class="sg-swatch">
+          <div class="sg-chip" style="background: var(--c-clay);"></div>
+          <div class="sg-meta">
+            <span class="sg-name">Clay</span><br>
+            <code>--c-clay · #A9674B</code><br>
+            <span class="u-muted" style="font-size: var(--fs-small);">Nur Linien, Flächen, Display</span>
+          </div>
+        </div>
+
+        <div class="sg-swatch">
+          <div class="sg-chip" style="background: var(--c-clay-deep);"></div>
+          <div class="sg-meta">
+            <span class="sg-name">Clay Deep</span><br>
+            <code>--c-clay-deep · #8F5239</code><br>
+            <span class="u-muted" style="font-size: var(--fs-small);">Links, Buttons, Fokus</span>
+          </div>
+        </div>
+
+        <div class="sg-swatch">
+          <div class="sg-chip" style="background: var(--c-line);"></div>
+          <div class="sg-meta">
+            <span class="sg-name">Line</span><br>
+            <code>--c-line · #E4D9CB</code><br>
+            <span class="u-muted" style="font-size: var(--fs-small);">Haarlinien</span>
+          </div>
+        </div>
+
+        <div class="sg-swatch">
+          <div class="sg-chip" style="background: var(--c-clay-light);"></div>
+          <div class="sg-meta">
+            <span class="sg-name">Clay Light</span><br>
+            <code>--c-clay-light · #C98A6B</code><br>
+            <span class="u-muted" style="font-size: var(--fs-small);">Nur auf dunklem Grund</span>
+          </div>
+        </div>
+
+      </div>
+
+      <h3 style="margin-top: var(--sp-8);">Kontrastregel</h3>
+      <p class="sg-note" style="margin-top: var(--sp-4);">
+        Die zweistufige Clay-Farbe ist eine Barrierefreiheits-Korrektur, keine Stilfrage.
+        <code>--c-clay</code> erreicht auf Sand nur 4,2:1 und scheitert damit an
+        WCAG AA für Fließtext; Weiß auf <code>--c-clay</code> erreicht 4,4:1 und
+        scheitert ebenfalls. Deshalb gilt: <strong>--c-clay</strong> nur für Linien,
+        Flächen und Display-Größen - <strong>--c-clay-deep</strong> für jeden Text in
+        Lesegröße und jede gefüllte Schaltfläche. Auf dunklem Grund - Fußzeile und
+        mobiles Menü - kehrt sich das um: dort gilt <strong>--c-clay-light</strong>.
+      </p>
+
+      <div style="margin-top: var(--sp-6);">
+        <div class="sg-row">
+          <span class="sg-row__meta"><code>--c-ink</code></span>
+          <span>auf Sand · 16,1:1 · <span class="sg-pass">AAA</span></span>
+        </div>
+        <div class="sg-row">
+          <span class="sg-row__meta"><code>--c-ink-soft</code></span>
+          <span>auf Sand · 11,2:1 · <span class="sg-pass">AAA</span></span>
+        </div>
+        <div class="sg-row">
+          <span class="sg-row__meta"><code>--c-stone</code></span>
+          <span>auf Sand · 5,3:1 · <span class="sg-pass">AA</span></span>
+        </div>
+        <div class="sg-row">
+          <span class="sg-row__meta"><code>--c-clay</code></span>
+          <span>auf Sand · 4,2:1 · <strong>AA verfehlt</strong> - nicht für Fließtext</span>
+        </div>
+        <div class="sg-row">
+          <span class="sg-row__meta"><code>--c-clay-deep</code></span>
+          <span>auf Sand · 5,7:1 · <span class="sg-pass">AA</span></span>
+        </div>
+        <div class="sg-row">
+          <span class="sg-row__meta">Weiß</span>
+          <span>auf <code>--c-clay-deep</code> · 6,1:1 · <span class="sg-pass">AA</span></span>
+        </div>
+        <div class="sg-row">
+          <span class="sg-row__meta"><code>--c-clay</code></span>
+          <span>auf <code>--c-ink</code> · 3,9:1 · <strong>AA verfehlt</strong> - nicht in der Fußzeile</span>
+        </div>
+        <div class="sg-row">
+          <span class="sg-row__meta"><code>--c-clay-light</code></span>
+          <span>auf <code>--c-ink</code> · 6,0:1 · <span class="sg-pass">AA</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TYPE ============ -->
+  <section class="section sg-section section--alt" id="typografie">
+    <div class="container">
+      <span class="sg-label">02 - Typografie</span>
+      <h2>Drei Schriften, drei Rollen</h2>
+      <p class="lead" style="margin-top: var(--sp-4);">
+        Cormorant Garamond trägt die Wärme, Inter trägt die Lesbarkeit,
+        Jost trägt die Marke. Keine Schrift verlässt ihre Rolle.
+      </p>
+
+      <div style="margin-top: var(--sp-8);">
+
+        <div class="sg-row">
+          <span class="sg-row__meta"><code>--fs-display</code><br><span class="u-muted sg-code">Cormorant 300</span></span>
+          <span style="font-family: var(--ff-display); font-weight: var(--fw-light); font-size: var(--fs-display); line-height: var(--lh-display); letter-spacing: var(--tr-display);">Grundton</span>
+        </div>
+
+        <div class="sg-row">
+          <span class="sg-row__meta"><code>--fs-h1</code><br><span class="u-muted sg-code">Cormorant 300</span></span>
+          <span style="font-family: var(--ff-display); font-weight: var(--fw-light); font-size: var(--fs-h1); line-height: var(--lh-h1); letter-spacing: var(--tr-display);">Es geht mir um den Menschen</span>
+        </div>
+
+        <div class="sg-row">
+          <span class="sg-row__meta"><code>--fs-h2</code><br><span class="u-muted sg-code">Cormorant 300</span></span>
+          <span style="font-family: var(--ff-display); font-weight: var(--fw-light); font-size: var(--fs-h2); line-height: var(--lh-h2);">Wer ich bin</span>
+        </div>
+
+        <div class="sg-row">
+          <span class="sg-row__meta"><code>--fs-h3</code><br><span class="u-muted sg-code">Cormorant 400</span></span>
+          <span style="font-family: var(--ff-display); font-size: var(--fs-h3); line-height: var(--lh-h3);">Die Grundtonbestimmung</span>
+        </div>
+
+        <div class="sg-row">
+          <span class="sg-row__meta"><code>--fs-lead</code><br><span class="u-muted sg-code">Inter 300 · 17-20px</span></span>
+          <span class="lead">Ich begleite, berate und unterstütze Menschen in ihrer Entwicklung.</span>
+        </div>
+
+        <div class="sg-row">
+          <span class="sg-row__meta"><code>--fs-body</code><br><span class="u-muted sg-code">Inter 400 · 16px</span></span>
+          <span style="max-width: var(--w-prose);">Wenn Sie wissen, wer Sie sind, können Sie besser greifen, was Ihnen leichtfällt und was Ihr Potential erlaubt. Ich erforsche Ihren persönlichen Grundton, diejenige Schwingung also, die Ihr Potential bereithält und die sich ausbreiten will.</span>
+        </div>
+
+        <div class="sg-row">
+          <span class="sg-row__meta"><code>--fs-small</code><br><span class="u-muted sg-code">Inter 400 · 15px</span></span>
+          <span style="font-size: var(--fs-small);">Sekundärer Text, Bildunterschriften, Fußzeile.</span>
+        </div>
+
+        <div class="sg-row">
+          <span class="sg-row__meta"><code>--fs-micro</code><br><span class="u-muted sg-code">Jost 400 · 13px</span></span>
+          <span style="font-family: var(--ff-micro); font-size: var(--fs-micro); text-transform: uppercase; letter-spacing: var(--tr-micro);">Coaching &amp; Consulting</span>
+        </div>
+
+      </div>
+
+      <h3 style="margin-top: var(--sp-8);">Deutsche Satzregeln</h3>
+      <ul class="stack stack--sm" style="margin-top: var(--sp-4); max-width: var(--w-prose);">
+        <li>Anführungszeichen immer typografisch: „so“ - niemals "so".</li>
+        <li><code>hyphens: auto</code> im Fließtext, damit Komposita wie
+            <em>Grundtonbestimmung</em> schmale Spalten nicht sprengen.</li>
+        <li>Keine Silbentrennung in Überschriften.</li>
+        <li><strong>Zwei Tiefen von Schwarz.</strong> Überschriften und Display-Typo
+            stehen in <code>--c-ink</code>, laufender Fließtext in
+            <code>--c-ink-soft</code>. Inter hat eine große x-Höhe und wirkt in
+            vollem Schwarz neben Cormorant Light schwerer als die Überschrift -
+            beide Werte sind AAA, der Unterschied dient allein der Hierarchie.</li>
+        <li><strong>Der Lead steht in Inter Light (300).</strong> Die Farbe
+            <code>--c-stone</code> liegt auf <code>--c-shell</code> bereits bei
+            4,8:1 - weiter aufhellen würde AA auf den Wechselbändern brechen.
+            Die Strichstärke zu reduzieren nimmt dem Lead das Gewicht, ohne
+            Kontrast zu kosten. Unter 26rem schaltet er auf 400 zurück.</li>
+        <li>Inter läuft mit negativer Laufweite (<code>--tr-body</code>,
+            <code>--tr-lead</code>). Ohne sie wirkt die Schrift wie eine
+            Standard-Oberflächenschrift statt wie Satz.</li>
+        <li>Kursiv nur im Fließtext - Inter Italic ist geladen, Cormorant existiert
+            ausschließlich aufrecht. <code>font-synthesis: none</code> verhindert,
+            dass der Browser fehlende Schnitte selbst erfindet.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ SPACE ============ -->
+  <section class="section sg-section" id="raum">
+    <div class="container">
+      <span class="sg-label">03 - Raum</span>
+      <h2>Abstandsskala</h2>
+      <p class="lead" style="margin-top: var(--sp-4);">
+        Basis 4px. Alle Abstände stammen aus dieser Skala - dazwischen gibt es nichts.
+      </p>
+
+      <div style="margin-top: var(--sp-7);">
+        <div class="sg-row"><span class="sg-row__meta"><code>--sp-1</code> · 4px</span>  <span class="sg-bar" style="width: var(--sp-1);"></span></div>
+        <div class="sg-row"><span class="sg-row__meta"><code>--sp-2</code> · 8px</span>  <span class="sg-bar" style="width: var(--sp-2);"></span></div>
+        <div class="sg-row"><span class="sg-row__meta"><code>--sp-3</code> · 12px</span> <span class="sg-bar" style="width: var(--sp-3);"></span></div>
+        <div class="sg-row"><span class="sg-row__meta"><code>--sp-4</code> · 16px</span> <span class="sg-bar" style="width: var(--sp-4);"></span></div>
+        <div class="sg-row"><span class="sg-row__meta"><code>--sp-5</code> · 24px</span> <span class="sg-bar" style="width: var(--sp-5);"></span></div>
+        <div class="sg-row"><span class="sg-row__meta"><code>--sp-6</code> · 32px</span> <span class="sg-bar" style="width: var(--sp-6);"></span></div>
+        <div class="sg-row"><span class="sg-row__meta"><code>--sp-7</code> · 48px</span> <span class="sg-bar" style="width: var(--sp-7);"></span></div>
+        <div class="sg-row"><span class="sg-row__meta"><code>--sp-8</code> · 64px</span> <span class="sg-bar" style="width: var(--sp-8);"></span></div>
+        <div class="sg-row"><span class="sg-row__meta"><code>--sp-9</code> · 96px</span> <span class="sg-bar" style="width: var(--sp-9);"></span></div>
+        <div class="sg-row"><span class="sg-row__meta"><code>--sp-10</code> · 128px</span><span class="sg-bar" style="width: var(--sp-10);"></span></div>
+        <div class="sg-row"><span class="sg-row__meta"><code>--sp-11</code> · 160px</span><span class="sg-bar" style="width: var(--sp-11);"></span></div>
+      </div>
+
+      <p class="sg-note" style="margin-top: var(--sp-7);">
+        Abschnitte setzen ihren vertikalen Rhythmus niemals selbst. Er kommt
+        ausschließlich aus <code>--section-y</code> auf <code>.section</code>.
+        Elevation entsteht durch Haarlinien in <code>--c-line</code>, nicht durch
+        Schatten. Einzige Ausnahme ist der Header im gescrollten Zustand.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ COMPONENTS ============ -->
+  <section class="section sg-section section--alt" id="komponenten">
+    <div class="container">
+      <span class="sg-label">04 - Komponenten</span>
+      <h2>Bausteine</h2>
+
+      <h3 style="margin-top: var(--sp-8);">Schaltflächen</h3>
+      <div style="display: flex; gap: var(--sp-4); flex-wrap: wrap; margin-top: var(--sp-4);">
+        <a class="btn btn--primary" href="#komponenten">Kontakt aufnehmen</a>
+        <a class="btn btn--ghost" href="#komponenten">Mehr erfahren</a>
+        <a class="link-arrow" href="#komponenten">Zum Ablauf</a>
+      </div>
+
+      <h3 style="margin-top: var(--sp-8);">Karten</h3>
+      <div class="grid grid--3" style="margin-top: var(--sp-4);">
+        <div class="card">
+          <h4 class="card__title">Begleiten</h4>
+          <p>Ich helfe, Gedanken zu ordnen und den Fokus zu finden.</p>
+        </div>
+        <div class="card">
+          <h4 class="card__title">Beraten</h4>
+          <p>Kreativ Lösungsmöglichkeiten entwickeln und loslassen, was nicht mehr passt.</p>
+        </div>
+        <div class="card">
+          <h4 class="card__title">Unterstützen</h4>
+          <p>Herausfinden, welche Frage Ihnen das Leben stellt.</p>
+        </div>
+      </div>
+
+      <h3 style="margin-top: var(--sp-8);">Zitat</h3>
+      <blockquote class="quote" style="margin-top: var(--sp-4); max-width: var(--w-prose);">
+        <p class="quote__text">
+          „Ich habe mich in knapp einer Stunde so verstanden gefühlt, dass ich die
+          eigentliche Aufnahme meiner Stimme völlig vergessen konnte.“
+        </p>
+        <cite class="quote__cite">Platzhalter - Referenz</cite>
+      </blockquote>
+
+      <h3 style="margin-top: var(--sp-8);">Zeitstrahl</h3>
+      <ol class="timeline" style="margin-top: var(--sp-4); max-width: var(--w-prose);">
+        <li class="timeline__item">
+          <span class="timeline__year">1964 · München</span>
+          <p>Geboren als „Münchner Kindl“, Studium der Betriebswirtschaft, Diplom-Kauffrau.</p>
+        </li>
+        <li class="timeline__item">
+          <span class="timeline__year">1991 · Berlin</span>
+          <p>Referentin, später stellvertretende Abteilungsleiterin im Direktorat Abwicklung der Treuhandanstalt.</p>
+        </li>
+        <li class="timeline__item">
+          <span class="timeline__year">1993 · Spreewald</span>
+          <p>Aufbau des Hotels „Zur Bleiche“ - heute unter den 100 besten Hotels Europas.</p>
+        </li>
+      </ol>
+
+      <h3 style="margin-top: var(--sp-8);">Ablauf</h3>
+      <ol class="steps" style="margin-top: var(--sp-4); max-width: var(--w-prose);">
+        <li class="steps__item">
+          <h4>E-Mail schreiben</h4>
+          <p>Sie schreiben mir mit Ihrer Telefonnummer.</p>
+        </li>
+        <li class="steps__item">
+          <h4>Kostenfreies Telefonat</h4>
+          <p>Wir kreisen Ihr Anliegen gemeinsam ein.</p>
+        </li>
+        <li class="steps__item">
+          <h4>Vorgehen und Kosten</h4>
+          <p>Ich sage Ihnen, wie ich vorgehen würde und was es kostet.</p>
+        </li>
+      </ol>
+
+      <h3 style="margin-top: var(--sp-8);">Werte</h3>
+      <ul class="values" style="margin-top: var(--sp-4); max-width: var(--w-prose);">
+        <li class="values__item">Wahrheit</li>
+        <li class="values__item">Richtiges Handeln</li>
+        <li class="values__item">Frieden</li>
+        <li class="values__item">Liebe</li>
+        <li class="values__item">Gewaltlosigkeit</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ MOTION ============ -->
+  <section class="section sg-section" id="bewegung">
+    <div class="container">
+      <span class="sg-label">05 - Bewegung</span>
+      <h2>Ein einziges Prinzip</h2>
+      <p class="lead" style="margin-top: var(--sp-4);">
+        Einblenden und 12&nbsp;px aufsteigen, gestaffelt um 60&nbsp;ms. Sonst nichts.
+        Kein Parallax, keine Karussells, kein Autoplay.
+      </p>
+
+      <div class="grid grid--3" style="margin-top: var(--sp-7);">
+        <div class="card" data-reveal><p>Erstes Element</p></div>
+        <div class="card" data-reveal><p>Zweites Element</p></div>
+        <div class="card" data-reveal><p>Drittes Element</p></div>
+      </div>
+
+      <p class="sg-note" style="margin-top: var(--sp-7);">
+        Bei <code>prefers-reduced-motion: reduce</code> entfallen alle Transformationen
+        und alle Inhalte erscheinen sofort. Der versteckte Ausgangszustand hängt am
+        <code>.js</code>-Guard: ohne JavaScript bleibt jeder Inhalt sichtbar.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container container--wide">
+    <div class="grid grid--3">
+      <div>
+        <span class="site-footer__title">Kontakt</span>
+        <ul class="site-footer__list stack stack--sm">
+          <li>Christine Clausing</li>
+          <li><a href="mailto:christine@cc-coaching.net">christine@cc-coaching.net</a></li>
+        </ul>
+      </div>
+      <div>
+        <span class="site-footer__title">Design System</span>
+        <ul class="site-footer__list stack stack--sm">
+          <li><a href="#farbe">Farbe</a></li>
+          <li><a href="#typografie">Typografie</a></li>
+          <li><a href="#raum">Raum</a></li>
+          <li><a href="#komponenten">Komponenten</a></li>
+        </ul>
+      </div>
+      <div>
+        <span class="site-footer__title">Rechtliches</span>
+        <ul class="site-footer__list stack stack--sm">
+          <li><a href="impressum.html">Impressum</a></li>
+          <li><a href="datenschutz.html">Datenschutzerklärung</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="site-footer__bottom">
+      <span>© 2026 Christine Clausing</span>
+      <span>Interne Referenzseite - nicht Teil der Website</span>
+    </div>
+  </div>
+</footer>
+
+<script src="scripts/main.js" defer></script>
+</body>
+</html>

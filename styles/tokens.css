@@ -1,0 +1,223 @@
+/* ============================================================
+   TOKENS - the single source of truth
+   CC Coaching & Consulting
+
+   THE RULE OF THIS FRAMEWORK
+   This is the only file permitted to contain a literal colour,
+   font size, spacing value, duration or easing curve. Every other
+   stylesheet consumes these via var(--…).
+
+   Need a value that isn't here? Add a token. That friction is
+   deliberate - it forces each new design decision to be conscious
+   and keeps the system from drifting.
+   ============================================================ */
+
+:root {
+
+  /* --------------------------------------------------------
+     1. COLOUR - palette "Warm Sand & Ink"
+     -------------------------------------------------------- */
+
+  --c-sand:        #FAF7F2;   /* page background */
+  --c-shell:       #F1EBE2;   /* alternating section bands */
+  --c-ink:         #1C1B19;   /* headings, display type, footer ground */
+  --c-ink-soft:    #3A3630;   /* running body copy - see two-ink rule */
+  --c-stone:       #6B6660;   /* secondary text, captions, meta */
+  --c-clay:        #A9674B;   /* decorative accent only - see note */
+  --c-clay-deep:   #8F5239;   /* text-safe accent, button fills */
+  --c-line:        #E4D9CB;   /* hairline borders */
+  --c-clay-light:  #C98A6B;   /* accent for use ON --c-ink only (footer,
+                                mobile nav overlay). Fails on light
+                                backgrounds - never use it on sand. */
+  --c-white:       #FFFFFF;
+
+  /* Channel forms, for alpha variations only. */
+  --c-ink-rgb:     28 27 25;
+  --c-clay-rgb:    169 103 75;
+  --c-white-rgb:   255 255 255;
+
+  --c-clay-wash:   rgb(var(--c-clay-rgb) / .07);   /* hover backgrounds */
+  --c-overlay:     rgb(var(--c-ink-rgb) / .97);    /* mobile nav */
+
+  /* CONTRAST RULE - measured against --c-sand
+     --c-ink        16.1:1  AAA
+     --c-ink-soft   11.2:1  AAA
+     --c-stone       5.3:1  AA
+     --c-clay        4.2:1  FAILS AA for body text
+     --c-clay-deep   5.7:1  AA
+     white on --c-clay       4.4:1  FAILS AA for body text
+     white on --c-clay-deep  6.1:1  AA
+
+     On --c-shell (alternating bands):
+     --c-ink         14.5:1  AAA
+     --c-ink-soft    10.1:1  AAA
+     --c-stone        4.8:1  AA
+     --c-clay-deep    5.2:1  AA
+
+     On --c-ink (the footer and the mobile nav overlay):
+     --c-clay        3.9:1  FAILS AA for body text
+     --c-clay-light  6.0:1  AA
+
+     Therefore: --c-clay is for rules, borders, washes and
+     display-size accents. Anything carrying text at body size,
+     and every filled button, uses --c-clay-deep.
+
+     TWO INK LEVELS - Inter 400 is a sturdy grotesque with a large
+     x-height. Set in full --c-ink next to Cormorant Light it
+     out-weighs the display type and flattens the hierarchy. So
+     headings and display type carry --c-ink, and running body copy
+     carries --c-ink-soft. Both are AAA; the difference is purely
+     about letting Cormorant lead.
+
+     NON-TEXT CONTRAST (WCAG 1.4.11) - --c-line is only 1.3:1 on
+     sand. That is fine for decorative dividers and card edges,
+     which the rule exempts, but NOT for the visible boundary of
+     an interactive control, which needs 3:1. Controls therefore
+     use --border-strong (--c-clay, 4.2:1). If this site ever
+     gains a form, its inputs use --border-strong too. */
+
+  /* Semantic aliases - prefer these in component CSS. */
+  --bg:            var(--c-sand);
+  --bg-alt:        var(--c-shell);
+  --text:          var(--c-ink-soft);   /* body copy */
+  --text-strong:   var(--c-ink);        /* headings and display type */
+  --text-muted:    var(--c-stone);
+  --accent:        var(--c-clay-deep);
+  --accent-soft:   var(--c-clay);
+  --border:        var(--c-line);        /* decorative hairlines only */
+  --border-strong: var(--c-clay);        /* boundaries of interactive controls */
+  --accent-on-dark: var(--c-clay-light);
+  --bg-dark:       var(--c-ink);         /* footer ground - the on-dark
+                                            contrast figures are measured
+                                            against this, not --c-ink-soft */
+
+  /* Derived surfaces. Alpha blends belong here, not in components. */
+  --underline:           rgb(var(--c-clay-rgb) / .35);   /* link underline */
+  --underline-on-dark:   rgb(var(--c-white-rgb) / .25);
+  --border-on-dark:      rgb(var(--c-white-rgb) / .12);
+  --text-muted-on-dark:  rgb(var(--c-white-rgb) / .60);  /* 6.9:1 on ink - AA */
+
+
+  /* --------------------------------------------------------
+     2. TYPE
+     -------------------------------------------------------- */
+
+  --ff-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --ff-body:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+                Roboto, Helvetica, Arial, sans-serif;
+  --ff-micro:   'Jost', 'Futura', 'Century Gothic', var(--ff-body);
+  --ff-mono:    ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace;
+
+  --fw-light:     300;
+  --fw-regular:   400;
+  --fw-medium:    500;
+  --fw-semibold:  600;
+
+  --fs-display: clamp(2.75rem,  1.60rem + 5.2vw, 5.50rem);
+  --fs-h1:      clamp(2.25rem,  1.50rem + 3.2vw, 3.75rem);
+  --fs-h2:      clamp(1.75rem,  1.30rem + 1.9vw, 2.50rem);
+  --fs-hero:    clamp(1.625rem, 1.25rem + 1.6vw, 2.375rem);  /* 26 -> 38px.
+                   The hero claim is a full sentence from Was.docx, so it
+                   needs a smaller size than a short slogan would. */
+  --fs-h3:      clamp(1.25rem,  1.10rem + 0.7vw, 1.50rem);
+  --fs-lead:    clamp(1.0625rem, 1.00rem + 0.3vw, 1.25rem);
+  --fs-quote:   clamp(1.0625rem, 1.00rem + 0.3vw, 1.25rem);  /* testimonials */
+  --fs-body:    1rem;        /* 16px */
+  --fs-small:   0.9375rem;   /* 15px */
+  --fs-micro:   0.8125rem;   /* 13px - Jost caps only */
+
+  --lh-display: 1.08;
+  --lh-h1:      1.12;
+  --lh-h2:      1.20;
+  --lh-h3:      1.35;
+  --lh-lead:    1.55;
+  --lh-quote:   1.55;
+  --lh-body:    1.65;
+
+  --tr-display: -0.015em;   /* Cormorant needs a touch of negative at size */
+  --tr-normal:   0;
+  --tr-body:    -0.011em;   /* Inter is drawn for optical tracking; without
+                               it, it reads like a default UI font */
+  --tr-lead:    -0.016em;   /* larger optical size wants more */
+  --tr-micro:    0.15em;    /* the logo's wordmark tracking - brand rule */
+
+
+  /* --------------------------------------------------------
+     3. SPACE
+     -------------------------------------------------------- */
+
+  --sp-1:  0.25rem;   /*  4 */
+  --sp-2:  0.5rem;    /*  8 */
+  --sp-3:  0.75rem;   /* 12 */
+  --sp-4:  1rem;      /* 16 */
+  --sp-5:  1.5rem;    /* 24 */
+  --sp-6:  2rem;      /* 32 */
+  --sp-7:  3rem;      /* 48 */
+  --sp-8:  4rem;      /* 64 */
+  --sp-9:  6rem;      /* 96 */
+  --sp-10: 8rem;      /* 128 */
+  --sp-11: 10rem;     /* 160 */
+
+  --section-y: clamp(5rem, 3rem + 8vw, 10rem);
+  --gutter:    clamp(1.25rem, 4vw, 4rem);
+
+
+  /* --------------------------------------------------------
+     4. MEASURE
+     -------------------------------------------------------- */
+
+  --w-content: 1200px;   /* standard container */
+  --w-wide:    1440px;   /* full-bleed-ish container */
+  --w-prose:   68ch;     /* body copy - German compounds need the room */
+  --w-lead:    60ch;     /* intro paragraphs */
+  --w-display: 44rem;    /* pull quotes. Deliberately rem, not ch: ch is
+                            relative to font-size, so a ch measure on
+                            display type balloons to an accidental width. */
+
+  --header-h:  4.5rem;
+  --hero-min-h: calc(100svh - var(--header-h));   /* the hero fills the first
+                            screen, so the next band never shows beneath it.
+                            svh, not vh: mobile browser bars must not push
+                            it taller than what is actually visible. */
+  --logo-h:    1.75rem;   /* capped for the interim raster logo (308x51).
+                            Once assets/logo.svg lands this can grow freely. */
+
+
+  /* --------------------------------------------------------
+     5. SHAPE & ELEVATION
+
+     Elevation is expressed as hairlines, not shadows. The sticky
+     header is the single exception.
+     -------------------------------------------------------- */
+
+  --radius:      2px;
+  --border-hair: 1px solid var(--c-line);
+
+  --shadow-header: 0 1px 0 var(--c-line),
+                   0 8px 24px rgb(var(--c-ink-rgb) / .04);
+
+
+  /* --------------------------------------------------------
+     6. MOTION
+
+     One primitive only: fade + rise on scroll-in. No parallax,
+     no carousels, no autoplay. All of it is disabled under
+     prefers-reduced-motion (see base.css).
+     -------------------------------------------------------- */
+
+  --ease:        cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-micro:   200ms;
+  --dur-reveal:  400ms;
+  --dur-slow:    700ms;
+  --reveal-rise: 12px;
+  --reveal-stagger: 60ms;
+
+
+  /* --------------------------------------------------------
+     7. LAYERS
+     -------------------------------------------------------- */
+
+  --z-header:  100;
+  --z-overlay: 200;
+  --z-skip:    300;
+}

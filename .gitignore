@@ -39,3 +39,11 @@ out/
 # Misc
 *.tmp
 *.bak
+
+# Client source documents — kept local only.
+# Referenz.docx contains a client's private phone number and home address;
+# consent covers name, age and website only. See CLAUDE.md.
+content/source/
+
+# Python bytecode from tools/
+__pycache__/
