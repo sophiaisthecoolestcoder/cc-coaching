@@ -179,7 +179,7 @@
                             screen, so the next band never shows beneath it.
                             svh, not vh: mobile browser bars must not push
                             it taller than what is actually visible. */
-  --logo-h:    1.75rem;   /* capped for the interim raster logo (308x51).
+  --logo-h:    1.75rem;   /* raster logo, 677x112 = 4x this height (V03).
                             Once assets/logo.svg lands this can grow freely. */
 
 

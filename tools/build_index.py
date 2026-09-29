@@ -123,7 +123,7 @@ HEAD = '''<!doctype html>
     <a class="logo" href="#top" aria-label="CC Coaching &amp; Consulting">
       <picture>
         <source srcset="assets/img/logo.webp" type="image/webp">
-        <img src="assets/img/logo.png" alt="CC Coaching &amp; Consulting" width="308" height="51">
+        <img src="assets/img/logo.png" alt="CC Coaching &amp; Consulting" width="677" height="112">
       </picture>
     </a>
     <button class="nav__toggle" type="button" data-nav-open aria-expanded="false" aria-controls="hauptnavigation" aria-label="Menü">

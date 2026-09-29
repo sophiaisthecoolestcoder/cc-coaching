@@ -84,7 +84,7 @@ def page(title, de_key, en_key, filename, flat=False):
     <a class="logo" href="index.html" aria-label="CC Coaching &amp; Consulting">
       <picture>
         <source srcset="assets/img/logo.webp" type="image/webp">
-        <img src="assets/img/logo.png" alt="CC Coaching &amp; Consulting" width="308" height="51">
+        <img src="assets/img/logo.png" alt="CC Coaching &amp; Consulting" width="677" height="112">
       </picture>
     </a>
     <nav class="nav" aria-label="Hauptnavigation">
